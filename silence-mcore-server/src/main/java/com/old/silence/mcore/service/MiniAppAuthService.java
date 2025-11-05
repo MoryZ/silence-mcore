@@ -16,6 +16,7 @@ import com.old.silence.mcore.dto.LoginRequest;
 import com.old.silence.mcore.dto.PoetryUserLoginLogRequest;
 import com.old.silence.mcore.dto.PoetryUserRequest;
 import com.old.silence.mcore.dto.SendVerifyCodeRequest;
+import com.old.silence.mcore.dto.VerifyCodeLoginRequest;
 import com.old.silence.mcore.security.SilenceHallContextHolder;
 import com.old.silence.mcore.security.SilenceHallServerTokenAuthority;
 import com.old.silence.mcore.security.SilencePrincipal;
@@ -79,13 +80,30 @@ public class MiniAppAuthService {
         return "123456";
     }
 
-    public void bindPhoneByVerifyCode(@Valid SendVerifyCodeRequest sendVerifyCodeRequest) {
-        var authenticatedUserIdOptional = SilenceHallContextHolder.getAuthenticatedUserId();
+    public LoginResponse bindPhoneByVerifyCode(VerifyCodeLoginRequest verifyCodeLoginRequest) {
+        var loginResponse = new LoginResponse();
+        /*var authenticatedUserIdOptional = SilenceHallContextHolder.getAuthenticatedUserId();
         if (authenticatedUserIdOptional.isEmpty()) {
             throw CommonErrors.ACCESS_DENIED.createException();
         }
         var userId = authenticatedUserIdOptional.get();
-        poetryUserFeignClient.bindPhone(userId, sendVerifyCodeRequest.getPhone());
+        poetryUserFeignClient.bindPhone(userId, verifyCodeLoginRequest.getPhone());
+
+        // 查询或创建用户
+        Optional<PoetryUserMCoreView> userOptional = poetryUserFeignClient.findById(userId, PoetryUserMCoreView.class);
+        PoetryUserMCoreView user = userOptional.orElseGet(() -> createNewUser(openid, unionid));
+
+        // 生成业务token
+        SilencePrincipal principal = new SilencePrincipal(user.getId(), unionid);
+        String token = silenceHallServerTokenAuthority.issueToken(principal);
+
+        // 记录登录日志
+        recordLoginLog(user, openid, unionid, token);
+
+        loginResponse.setToken(loginResult.token());
+        loginResponse.setUserInfo(buildUserResponse(loginResult.user()));
+        loginResponse.setOpenid(wxLoginResult.getOpenid());*/
+        return loginResponse;
     }
 
     public void bindPhone(BindPhoneRequest request) {

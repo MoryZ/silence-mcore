@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.old.silence.mcore.dto.BindPhoneRequest;
 import com.old.silence.mcore.dto.LoginRequest;
 import com.old.silence.mcore.dto.SendVerifyCodeRequest;
+import com.old.silence.mcore.dto.VerifyCodeLoginRequest;
 import com.old.silence.mcore.result.ApiResult;
 import com.old.silence.mcore.service.MiniAppAuthService;
 import com.old.silence.mcore.vo.LoginResponse;
@@ -62,10 +63,10 @@ public class MiniAppAuthResource {
     /**
      * 绑定手机号
      */
-    @PostMapping("/auth/bindPhoneByVerifyCode")
-    public ApiResult<Boolean> bindPhoneByVerifyCode(@Valid @RequestBody SendVerifyCodeRequest sendVerifyCodeRequest) {
-        miniAppAuthService.bindPhoneByVerifyCode(sendVerifyCodeRequest);
-        return ApiResult.success(true);
+    @PostMapping("/auth/verify-code-login")
+    public ApiResult<LoginResponse> verifyCodeLogin(@Valid @RequestBody VerifyCodeLoginRequest verifyCodeLoginRequest) {
+
+        return ApiResult.success(miniAppAuthService.bindPhoneByVerifyCode(verifyCodeLoginRequest));
     }
 
     @PostMapping("/auth/sendVerifyCode")

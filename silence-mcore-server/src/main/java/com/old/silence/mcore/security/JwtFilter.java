@@ -44,9 +44,7 @@ public class JwtFilter extends OncePerRequestFilter {
             if (jacksonMapper.validateJson(subject)) {
                 var principal = jacksonMapper.fromJson(subject, SilencePrincipal.class);
                 var userId = principal.getUserId();
-
                 if (userService.existsByUserId(userId)) {
-
                     Authentication authentication = new UsernamePasswordAuthenticationToken(
                             principal, null, null);
                     SecurityContextHolder.getContext().setAuthentication(authentication);

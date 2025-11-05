@@ -9,14 +9,14 @@ public class SilenceHallContextHolder {
 
     public static Optional<BigInteger> getAuthenticatedUserId() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null) {
-            return Optional.empty();
-        } else {
+        if (authentication != null) {
             var principal = authentication.getPrincipal();
-            return principal instanceof SilencePrincipal
-                    ? Optional.of(((SilencePrincipal) principal).getUserId())
-                    : Optional.of(new BigInteger(principal.toString()));
+            if (principal instanceof SilencePrincipal) {
+                var userId = ((SilencePrincipal) principal).getUserId();
+                return Optional.of(userId);
+            }
         }
+        return Optional.empty();
     }
 
     public static Optional<SilenceHallUser> getAuthenticatedUser() {
