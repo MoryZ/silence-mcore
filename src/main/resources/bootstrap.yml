@@ -1,0 +1,45 @@
+server:
+  port: 8087
+
+spring:
+  application.name: silence-mcore
+  profiles.active: CI-1
+  messages.basename: messages/mcore_messages
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+
+logging:
+  level:
+    com.old.silence.hall: INFO
+    #    '[org.springframework.jdbc.core]': TRACE
+    #    '[com.old.silence.core.jdbc]': DEBUG
+    #    '[org.springframework.web.filter.CommonsRequestLoggingFilter]': DEBUG
+    #    '[com.old.silence.web.client]': DEBUG
+    root: INFO
+
+silence:
+  system.identifier: MCORE
+  csp:
+    component-code: SILENCE-MCORE-SERVER@SILENCE-MCORE
+    namespaces: application.yml
+    config-server: http://115.190.196.117:8097
+    access-key: CI_01c5dc7e726a4b17bca24416f0c4090d
+    secret-key: 7scvunuzkncq6tyoad4rzkmkk8bfvxorzof5ugjdrh76m7wxw0a8l2vf4v8d0e1y
+  cyberark:
+    enabled: true
+    host: http://115.190.196.117:8097
+    app-id: SILENCE-MCORE-SERVER@SILENCE-MCORE
+    app-key: 20240518HelloTmx
+    safe: AIM_SILENCE_MIDDLEWARE
+    folder: root
+
+wechat:
+  miniapp:
+    appId: wx5e3da3457b4b7e83
+    secret: 7e313192d36142d77d82cff379bac8c5
+    # sessionKey缓存时间（建议与微信session_key有效期一致）
+    session-key-timeout: 2592000  # 30天，单位秒
