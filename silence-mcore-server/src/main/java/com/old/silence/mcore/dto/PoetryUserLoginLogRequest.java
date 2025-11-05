@@ -22,6 +22,8 @@ public class PoetryUserLoginLogRequest {
     @NotBlank
     @Size(max = 64)
     private String openid;
+    @Size(max = 64)
+    private String unionid;
     @NotNull
     private Byte loginType;
     private String ipAddress;

@@ -7,8 +7,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.old.silence.mcore.dto.BindPhoneRequest;
 import com.old.silence.mcore.dto.LoginRequest;
+import com.old.silence.mcore.dto.SendVerifyCodeRequest;
 import com.old.silence.mcore.result.ApiResult;
 import com.old.silence.mcore.service.MiniAppAuthService;
 import com.old.silence.mcore.vo.LoginResponse;
@@ -38,20 +41,35 @@ public class MiniAppAuthResource {
         return ApiResult.success(miniAppAuthService.login(request));
     }
 
-    /*    *//**
+ /*   *//**
      * 刷新token
      *//*
     @PostMapping("/refresh-token")
     public LoginResponse refreshToken(@RequestHeader("Authorization") String token) {
         // 刷新token逻辑
         return miniAppAuthService.refreshToken(token);
+    }*/
+
+    /**
+     * 绑定手机号
+     */
+    @PostMapping("/auth/bindPhone")
+    public ApiResult<Boolean> bindPhone(@Valid @RequestBody BindPhoneRequest request) {
+        miniAppAuthService.bindPhone(request);
+        return ApiResult.success(true);
     }
 
-    *//**
+    /**
      * 绑定手机号
-     *//*
-    @PostMapping("/bind-phone")
-    public void bindPhone(@Valid @RequestBody BindPhoneRequest request) {
-        miniAppAuthService.bindPhone(request);
-    }*/
+     */
+    @PostMapping("/auth/bindPhoneByVerifyCode")
+    public ApiResult<Boolean> bindPhoneByVerifyCode(@Valid @RequestBody SendVerifyCodeRequest sendVerifyCodeRequest) {
+        miniAppAuthService.bindPhoneByVerifyCode(sendVerifyCodeRequest);
+        return ApiResult.success(true);
+    }
+
+    @PostMapping("/auth/sendVerifyCode")
+    public ApiResult<String> sendVerifyCode(@RequestBody SendVerifyCodeRequest sendVerifyCodeRequest){
+        return ApiResult.success(miniAppAuthService.sendVerifyCode(sendVerifyCodeRequest));
+    }
 }

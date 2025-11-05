@@ -1,0 +1,17 @@
+package com.old.silence.mcore.vo;
+
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * @author moryzang
+ */
+
+@Setter
+@Getter
+public class LoginResponse {
+    private String token;
+    private UserResponse userInfo;
+    private String openid;
+
+}

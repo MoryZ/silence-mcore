@@ -31,4 +31,7 @@ public interface PoetryUserFeignClient {
 
     @PutMapping("/poetryUsers/{id}")
     void update(@PathVariable BigInteger id, @RequestBody PoetryUserRequest user);
+
+    @PutMapping("/poetryUsers/{id}/bindPhone")
+    void bindPhone(@PathVariable BigInteger id, @RequestParam String phone);
 }
