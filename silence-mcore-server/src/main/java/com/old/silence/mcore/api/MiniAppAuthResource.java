@@ -63,9 +63,8 @@ public class MiniAppAuthResource {
     /**
      * 绑定手机号
      */
-    @PostMapping("/auth/verify-code-login")
+    @PostMapping("/auth/verifyCodeLogin")
     public ApiResult<LoginResponse> verifyCodeLogin(@Valid @RequestBody VerifyCodeLoginRequest verifyCodeLoginRequest) {
-
         return ApiResult.success(miniAppAuthService.bindPhoneByVerifyCode(verifyCodeLoginRequest));
     }
 

@@ -81,6 +81,7 @@ public class MiniAppAuthService {
     }
 
     public LoginResponse bindPhoneByVerifyCode(VerifyCodeLoginRequest verifyCodeLoginRequest) {
+        // 校验短信验证码
         var loginResponse = new LoginResponse();
         /*var authenticatedUserIdOptional = SilenceHallContextHolder.getAuthenticatedUserId();
         if (authenticatedUserIdOptional.isEmpty()) {

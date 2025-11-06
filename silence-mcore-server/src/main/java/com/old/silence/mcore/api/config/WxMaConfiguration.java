@@ -4,6 +4,8 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.api.WxMaUserService;
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
 import cn.binarywang.wx.miniapp.config.impl.WxMaDefaultConfigImpl;
+import lombok.Getter;
+import lombok.Setter;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author moryzang
  */
+@Setter
+@Getter
 @Configuration
 @ConfigurationProperties(prefix = "wechat.miniapp")
 public class WxMaConfiguration {
@@ -36,27 +40,4 @@ public class WxMaConfiguration {
         return wxMaService.getUserService();
     }
 
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
-    public Long getSessionKeyTimeout() {
-        return sessionKeyTimeout;
-    }
-
-    public void setSessionKeyTimeout(Long sessionKeyTimeout) {
-        this.sessionKeyTimeout = sessionKeyTimeout;
-    }
 }

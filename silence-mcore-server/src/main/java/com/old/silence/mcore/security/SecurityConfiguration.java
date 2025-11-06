@@ -41,6 +41,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authz -> authz
                         // 公开接口
                         .requestMatchers("/api/v1/auth/login").permitAll()
+                        .requestMatchers("/api/v1/auth/verifyCodeLogin").permitAll()
                         .requestMatchers("/api/v1/auth/logout").permitAll()
                         .requestMatchers("/api/v1/auth/sendVerifyCode").permitAll()
                         .requestMatchers("/api/v1/auth/bindPhone").permitAll()

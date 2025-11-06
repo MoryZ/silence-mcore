@@ -1,8 +1,13 @@
 package com.old.silence.mcore.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author moryzang
  */
+@Setter
+@Getter
 public class WxMaLoginResult {
 
     /**
@@ -25,35 +30,4 @@ public class WxMaLoginResult {
      */
     private Long expiresTime;
 
-    public String getOpenid() {
-        return openid;
-    }
-
-    public void setOpenid(String openid) {
-        this.openid = openid;
-    }
-
-    public String getSessionKey() {
-        return sessionKey;
-    }
-
-    public void setSessionKey(String sessionKey) {
-        this.sessionKey = sessionKey;
-    }
-
-    public String getUnionid() {
-        return unionid;
-    }
-
-    public void setUnionid(String unionid) {
-        this.unionid = unionid;
-    }
-
-    public Long getExpiresTime() {
-        return expiresTime;
-    }
-
-    public void setExpiresTime(Long expiresTime) {
-        this.expiresTime = expiresTime;
-    }
 }

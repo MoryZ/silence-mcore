@@ -1,10 +1,15 @@
 package com.old.silence.mcore.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigInteger;
 
 /**
  * @author moryzang
  */
+@Setter
+@Getter
 public class UserResponse {
 
     private BigInteger id;
@@ -12,35 +17,4 @@ public class UserResponse {
     private String avatar;
     private String phone;
 
-    public BigInteger getId() {
-        return id;
-    }
-
-    public void setId(BigInteger id) {
-        this.id = id;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 }

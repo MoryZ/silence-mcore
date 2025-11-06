@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.old.silence.mcore.client.content.PoetryCategoryFeignClient;
 import com.old.silence.mcore.client.content.PoetryGradeFeignClient;
 import com.old.silence.mcore.dto.PoetryCategoryMcoreQuery;
+import com.old.silence.mcore.result.ApiResult;
 import com.old.silence.mcore.vo.PoetryCategoryMcoreView;
 import com.old.silence.mcore.vo.PoetryGradeMcoreView;
 
@@ -25,8 +26,8 @@ public class PoetryCategoryResource {
     }
 
     @GetMapping("/poetryCategories")
-    public Page<PoetryCategoryMcoreView> query(PoetryCategoryMcoreQuery query, Pageable pageable) {
-        return poetryCategoryFeignClient.query(query, pageable, PoetryCategoryMcoreView.class);
+    public ApiResult<Page<PoetryCategoryMcoreView>> query(PoetryCategoryMcoreQuery query, Pageable pageable) {
+        return ApiResult.success(poetryCategoryFeignClient.query(query, pageable, PoetryCategoryMcoreView.class));
     }
 
 }
