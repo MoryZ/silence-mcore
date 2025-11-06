@@ -24,7 +24,7 @@ public class PoetryUserLearningRecordResource {
         this.poetryUserLearningRecordFeignClient = poetryUserLearningRecordFeignClient;
     }
 
-    @PostMapping("/poetryUserLearningRecord")
+    @PostMapping("/poetryUserLearningRecords")
     public ApiResult<String> create(@RequestBody PoetryUserLearningRecordRequest poetryAnswerRecordsRequest) {
         var userId = SilenceHallContextHolder.getAuthenticatedUserId().orElseThrow(CommonErrors.ACCESS_DENIED::createException);
         poetryAnswerRecordsRequest.setUserId(userId);
