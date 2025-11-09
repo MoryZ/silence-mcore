@@ -81,29 +81,21 @@ public class MiniAppAuthService {
     }
 
     public LoginResponse bindPhoneByVerifyCode(VerifyCodeLoginRequest verifyCodeLoginRequest) {
-        // 校验短信验证码
-        var loginResponse = new LoginResponse();
-        /*var authenticatedUserIdOptional = SilenceHallContextHolder.getAuthenticatedUserId();
-        if (authenticatedUserIdOptional.isEmpty()) {
-            throw CommonErrors.ACCESS_DENIED.createException();
+        // 校验短信验证码 TODO
+        // 1. 根据code获取微信session信息
+        WxMaLoginResult wxLoginResult;
+        try {
+            wxLoginResult = wxMaLoginService.loginByCode(verifyCodeLoginRequest.getCode());
+        } catch (WxErrorException e) {
+            log.error("微信接口调用失败", e);
+            throw new RuntimeException("验证码登录失败: " + e.getError().getErrorMsg());
         }
-        var userId = authenticatedUserIdOptional.get();
-        poetryUserFeignClient.bindPhone(userId, verifyCodeLoginRequest.getPhone());
 
-        // 查询或创建用户
-        Optional<PoetryUserMCoreView> userOptional = poetryUserFeignClient.findById(userId, PoetryUserMCoreView.class);
-        PoetryUserMCoreView user = userOptional.orElseGet(() -> createNewUser(openid, unionid));
+        // 2. 处理业务登录逻辑
+        var loginResponse = processBusinessLogin(wxLoginResult);
 
-        // 生成业务token
-        SilencePrincipal principal = new SilencePrincipal(user.getId(), unionid);
-        String token = silenceHallServerTokenAuthority.issueToken(principal);
-
-        // 记录登录日志
-        recordLoginLog(user, openid, unionid, token);
-
-        loginResponse.setToken(loginResult.token());
-        loginResponse.setUserInfo(buildUserResponse(loginResult.user()));
-        loginResponse.setOpenid(wxLoginResult.getOpenid());*/
+        // 3. 绑定手机
+        poetryUserFeignClient.bindPhone(loginResponse.getUserInfo().getId(), verifyCodeLoginRequest.getPhone());
         return loginResponse;
     }
 

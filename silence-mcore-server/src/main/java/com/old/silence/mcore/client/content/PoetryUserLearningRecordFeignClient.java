@@ -14,7 +14,7 @@ import com.old.silence.web.bind.annotation.PostJsonMapping;
 @FeignClient(name = "silence-content-service", contextId = "poetryUserLearningRecord", path = "/api/v1")
 public interface PoetryUserLearningRecordFeignClient {
 
-    @PostJsonMapping("/poetryAnswerRecords")
+    @PostJsonMapping("/poetryUserLearningRecords")
     BigInteger create(@RequestBody @Validated PoetryUserLearningRecordRequest command);
 
 

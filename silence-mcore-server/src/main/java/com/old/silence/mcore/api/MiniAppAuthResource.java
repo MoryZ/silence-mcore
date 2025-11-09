@@ -7,7 +7,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.old.silence.mcore.dto.BindPhoneRequest;
 import com.old.silence.mcore.dto.LoginRequest;
@@ -41,15 +40,6 @@ public class MiniAppAuthResource {
         log.info("小程序登录请求: {}", request.getCode());
         return ApiResult.success(miniAppAuthService.login(request));
     }
-
- /*   *//**
-     * 刷新token
-     *//*
-    @PostMapping("/refresh-token")
-    public LoginResponse refreshToken(@RequestHeader("Authorization") String token) {
-        // 刷新token逻辑
-        return miniAppAuthService.refreshToken(token);
-    }*/
 
     /**
      * 绑定手机号

@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.old.silence.core.context.CommonErrors;
 import com.old.silence.mcore.client.content.PoetryUserLearningRecordFeignClient;
-import com.old.silence.mcore.dto.PoetryAnswerRecordsRequest;
 import com.old.silence.mcore.dto.PoetryUserLearningRecordRequest;
 import com.old.silence.mcore.result.ApiResult;
 import com.old.silence.mcore.security.SilenceHallContextHolder;

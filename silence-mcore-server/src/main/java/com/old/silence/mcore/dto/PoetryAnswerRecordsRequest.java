@@ -20,6 +20,8 @@ public class PoetryAnswerRecordsRequest {
     @NotNull
     private BigInteger contentId;
     @NotNull
+    private BigInteger subCategoryId;
+    @NotNull
     private Map<String, Object> userAnswer;
     @NotNull
     private Boolean correct;
