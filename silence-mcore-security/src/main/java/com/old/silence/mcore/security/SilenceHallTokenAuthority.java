@@ -6,7 +6,7 @@ public interface SilenceHallTokenAuthority {
         return null;
     }
 
-    boolean verifyToken(String token);
+    int verifyToken(String token);
 
     String getSubject(String token);
 }

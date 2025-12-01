@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -38,7 +39,16 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws
             ServletException, IOException {
         var tokenOptional = getToken(request);
-        if (tokenOptional.isPresent() && jwtProvider.verifyToken(tokenOptional.get())) {
+        if (tokenOptional.isPresent()) {
+            var errorCode = jwtProvider.verifyToken(tokenOptional.get());
+            if (HttpStatus.UNAUTHORIZED.value() == errorCode) {
+                response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            } else if (HttpStatus.FORBIDDEN.value() == errorCode) {
+                response.setStatus(HttpStatus.FORBIDDEN.value());
+                return;
+            } else if (HttpStatus.INTERNAL_SERVER_ERROR.value() == errorCode) {
+                throw new RuntimeException("Internal server error while verifying JWT token");
+            }
             var token = tokenOptional.get();
             String subject = jwtProvider.getSubject(token);
             if (jacksonMapper.validateJson(subject)) {

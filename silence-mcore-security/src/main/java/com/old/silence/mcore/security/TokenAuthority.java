@@ -9,7 +9,7 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 
-public class TokenAuthority implements SilenceHallTokenAuthority{
+/*public class TokenAuthority implements SilenceHallTokenAuthority{
     private static final Logger LOGGER = LoggerFactory.getLogger(TokenAuthority.class);
 
     @Override
@@ -35,4 +35,4 @@ public class TokenAuthority implements SilenceHallTokenAuthority{
                 .verify(token)
                 .getSubject();
     }
-}
+}*/

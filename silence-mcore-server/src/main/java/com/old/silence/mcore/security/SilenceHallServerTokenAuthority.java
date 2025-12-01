@@ -3,6 +3,7 @@ package com.old.silence.mcore.security;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -28,7 +29,7 @@ public class SilenceHallServerTokenAuthority implements SilenceHallTokenAuthorit
     @Value("${silence.hall.jwt.secret:silence-hall}")
     private String jwtSecret;
 
-    @Value("${silence.hall.jwt.expiration:6}")
+    @Value("${silence.hall.jwt.expiration:30}")
     private Long jwtExpirationSeconds;
 
     private final JacksonMapper jacksonMapper;
@@ -52,24 +53,24 @@ public class SilenceHallServerTokenAuthority implements SilenceHallTokenAuthorit
                 .withIssuer(SecurityConstants.TOKEN_ISSUER)
                 .withAudience(SecurityConstants.TOKEN_AUDIENCE)
                 .withIssuedAt(now)
-                .withExpiresAt(now.plus(jwtExpirationSeconds, ChronoUnit.HOURS))
+                .withExpiresAt(now.plus(jwtExpirationSeconds, ChronoUnit.DAYS))
                 .sign(algorithm);
     }
 
     @Override
-    public boolean verifyToken(String token) {
+    public int verifyToken(String token) {
         Algorithm algorithm = Algorithm.HMAC256(jwtSecret);
         JWTVerifier verifier = JWT.require(algorithm).build();
         try {
             verifier.verify(token);
-        }catch (JWTDecodeException | SignatureVerificationException ex){
+        } catch (JWTDecodeException | SignatureVerificationException ex) {
             LOGGER.error("verify token failed:{}", ex.getLocalizedMessage());
-            return false;
-        }catch (TokenExpiredException ex){
+            return HttpStatus.UNAUTHORIZED.value(); // 401 Unauthorized
+        } catch (TokenExpiredException ex) {
             LOGGER.warn("The token is expired:{}", token);
-            return false;
+            return HttpStatus.FORBIDDEN.value(); // 403 Forbidden
         }
-        return true;
+        return HttpStatus.OK.value(); // 200 OK
     }
 
     @Override
