@@ -17,7 +17,7 @@ import com.old.silence.web.data.ProjectedPayloadType;
 @FeignClient(name = "silence-content-service", contextId = "content", path = "/api/v1")
 public interface ContentFeignClient {
 
-    @GetMapping(value = "/poetryGrades", params = {"pageNo", "pageSize"})
+    @GetMapping(value = "/contents", params = {"pageNo", "pageSize"})
     <T> Page<T> query(@Validated @SpringQueryMap ContentMcoreQuery query, Pageable pageable,
                       @ProjectedPayloadType(ContentView.class) Class<T> projectionType);
 }
