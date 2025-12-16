@@ -1,10 +1,14 @@
 package com.old.silence.mcore.api;
 
+import java.math.BigInteger;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.old.silence.core.exception.ResourceNotFoundException;
 import com.old.silence.mcore.client.content.ContentFeignClient;
 import com.old.silence.mcore.dto.ContentMcoreQuery;
 import com.old.silence.mcore.result.ApiResult;
@@ -23,9 +27,14 @@ public class ContentResource {
         this.contentFeignClient = contentFeignClient;
     }
 
-    @GetMapping("/contents")
+    @GetMapping(value = "/contents", params = {"pageNo", "pageSize"})
     public ApiResult<Page<ContentMcoreView>> query(ContentMcoreQuery query, Pageable pageable) {
         return ApiResult.success(contentFeignClient.query(query, pageable, ContentMcoreView.class));
     }
 
+    @GetMapping("/contents/{id}")
+    public ApiResult<ContentMcoreView> findById(@PathVariable BigInteger id) {
+        return ApiResult.success(contentFeignClient.findById(id, ContentMcoreView.class)
+                .orElseThrow(ResourceNotFoundException::new));
+    }
 }

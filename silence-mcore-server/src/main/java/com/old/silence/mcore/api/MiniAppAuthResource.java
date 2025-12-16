@@ -37,7 +37,7 @@ public class MiniAppAuthResource {
      */
     @PostMapping("/auth/login")
     public ApiResult<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
-        log.info("小程序登录请求: {}", request.getCode());
+        log.info("小程序登录请求授权码: {}", request.getCode());
         return ApiResult.success(miniAppAuthService.login(request));
     }
 

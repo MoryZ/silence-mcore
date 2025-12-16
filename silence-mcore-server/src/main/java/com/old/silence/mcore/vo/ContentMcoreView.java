@@ -1,5 +1,6 @@
 package com.old.silence.mcore.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.old.silence.content.domain.enums.ContentReferenceMode;
 import com.old.silence.content.domain.enums.ContentStatus;
 import com.old.silence.content.domain.enums.ContentType;
@@ -14,6 +15,7 @@ import java.util.Map;
  */
 public interface ContentMcoreView {
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     BigInteger getId();
 
     String getTitle();

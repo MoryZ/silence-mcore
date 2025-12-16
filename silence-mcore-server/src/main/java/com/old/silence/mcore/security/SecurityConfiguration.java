@@ -45,6 +45,9 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/v1/auth/logout").permitAll()
                         .requestMatchers("/api/v1/auth/sendVerifyCode").permitAll()
                         .requestMatchers("/api/v1/auth/bindPhone").permitAll()
+                        .requestMatchers("/api/v1/test1").permitAll()
+                        .requestMatchers("/api/v1/test2").permitAll()
+                        .requestMatchers("/api/v1/test3").permitAll()
                         .anyRequest().authenticated()
                 );
         http.exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)));
