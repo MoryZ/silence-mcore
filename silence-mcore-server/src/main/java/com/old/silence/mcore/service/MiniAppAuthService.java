@@ -1,8 +1,6 @@
 package com.old.silence.mcore.service;
 
-import jakarta.validation.Valid;
 import me.chanjar.weixin.common.error.WxErrorException;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -37,6 +35,7 @@ import java.util.Optional;
 public class MiniAppAuthService {
 
     private static final Logger log = LoggerFactory.getLogger(MiniAppAuthService.class);
+    public static final String SESSION_KEY = "session_key:";
     private final WxMaLoginService wxMaLoginService;
     private final PoetryUserFeignClient poetryUserFeignClient;
     private final PoetryUserLoginLogFeignClient poetryUserLoginLogFeignClient;
@@ -109,7 +108,7 @@ public class MiniAppAuthService {
             throw CommonErrors.ACCESS_DENIED.createException();
         }
         userId = authenticatedUserIdOptional.get();
-        sessionKey = stringRedisTemplate.opsForValue().get("session_key:" + userId);
+        sessionKey = stringRedisTemplate.opsForValue().get(SESSION_KEY + userId);
         if (sessionKey == null) {
             throw CommonErrors.NOT_BLANK.createException("session_key已过期，请重新登录");
         }
@@ -160,6 +159,7 @@ public class MiniAppAuthService {
 
     /**
      * 执行登录核心逻辑（查询/创建用户、生成token、记录日志、保存sessionKey）
+     *
      * @param wxLoginResult 微信登录结果
      * @return 登录结果，包含用户和token
      */
@@ -209,9 +209,9 @@ public class MiniAppAuthService {
 
 
     /**
-         * 登录结果（内部类）
-         */
-        private record LoginResult(PoetryUserMCoreView user, String token) {
+     * 登录结果（内部类）
+     */
+    private record LoginResult(PoetryUserMCoreView user, String token) {
 
     }
 }

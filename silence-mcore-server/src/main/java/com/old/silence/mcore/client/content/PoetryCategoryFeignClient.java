@@ -8,9 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.old.silence.content.api.vo.PoetryCategoryView;
-import com.old.silence.content.api.vo.PoetryGradeView;
 import com.old.silence.mcore.dto.PoetryCategoryMcoreQuery;
-import com.old.silence.mcore.dto.PoetryGradeMcoreQuery;
 import com.old.silence.web.data.ProjectedPayloadType;
 
 /**

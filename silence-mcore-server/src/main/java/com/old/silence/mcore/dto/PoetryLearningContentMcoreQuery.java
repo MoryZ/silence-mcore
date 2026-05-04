@@ -25,8 +25,6 @@ public class PoetryLearningContentMcoreQuery {
     private String annotations;
     private String audioUrl;
     private String imageUrl;
-    private Long viewCount;
-
 
 
 }

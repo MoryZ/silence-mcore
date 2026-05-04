@@ -1,9 +1,8 @@
 package com.old.silence.mcore.vo;
 
-import java.math.BigInteger;
-
-import org.springframework.data.web.ProjectedPayload;
 import com.old.silence.data.commons.domain.AuditableView;
+
+import java.math.BigInteger;
 
 /**
  * PoetryUserFavorite视图接口

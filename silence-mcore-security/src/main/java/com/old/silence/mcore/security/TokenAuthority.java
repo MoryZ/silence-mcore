@@ -1,14 +1,5 @@
 package com.old.silence.mcore.security;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.auth0.jwt.exceptions.SignatureVerificationException;
-import com.auth0.jwt.exceptions.TokenExpiredException;
-
 /*public class TokenAuthority implements SilenceHallTokenAuthority{
     private static final Logger LOGGER = LoggerFactory.getLogger(TokenAuthority.class);
 

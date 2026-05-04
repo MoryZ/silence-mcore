@@ -19,6 +19,12 @@ public class PoetryUserRequest {
     private String nickname;
     private String avatarUrl;
     private String phone;
+    @Size(max = 16)
+    private String gender;
+    @Size(max = 32)
+    private String birthday;
+    @Size(max = 255)
+    private String address;
     private GradeLevel gradeLevel;
     private Long studyGoalDaily;
 }

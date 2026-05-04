@@ -24,10 +24,10 @@ public class PoetryUserLearningRecordResource {
     }
 
     @PostMapping("/poetryUserLearningRecords")
-    public ApiResult<String> create(@RequestBody PoetryUserLearningRecordRequest poetryAnswerRecordsRequest) {
+    public ApiResult<String> completeLearningRecord(@RequestBody PoetryUserLearningRecordRequest poetryAnswerRecordsRequest) {
         var userId = SilenceHallContextHolder.getAuthenticatedUserId().orElseThrow(CommonErrors.ACCESS_DENIED::createException);
         poetryAnswerRecordsRequest.setUserId(userId);
-        return ApiResult.success(String.valueOf(poetryUserLearningRecordFeignClient.create(poetryAnswerRecordsRequest)));
+        return ApiResult.success(String.valueOf(poetryUserLearningRecordFeignClient.completeLearningRecord(poetryAnswerRecordsRequest)));
     }
 
 }

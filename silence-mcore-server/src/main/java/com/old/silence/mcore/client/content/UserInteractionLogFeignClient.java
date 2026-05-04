@@ -1,7 +1,5 @@
 package com.old.silence.mcore.client.content;
 
-import java.math.BigInteger;
-
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.data.domain.Page;
@@ -16,6 +14,8 @@ import com.old.silence.mcore.dto.UserInteractionLogMcoreQuery;
 import com.old.silence.mcore.dto.UserInteractionLogRequest;
 import com.old.silence.web.bind.annotation.PostJsonMapping;
 import com.old.silence.web.data.ProjectedPayloadType;
+
+import java.math.BigInteger;
 
 /**
  * @author moryzang

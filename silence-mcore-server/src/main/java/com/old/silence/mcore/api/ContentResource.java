@@ -1,7 +1,5 @@
 package com.old.silence.mcore.api;
 
-import java.math.BigInteger;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +11,8 @@ import com.old.silence.mcore.client.content.ContentFeignClient;
 import com.old.silence.mcore.dto.ContentMcoreQuery;
 import com.old.silence.mcore.result.ApiResult;
 import com.old.silence.mcore.vo.ContentMcoreView;
+
+import java.math.BigInteger;
 
 /**
  * @author moryzang

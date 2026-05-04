@@ -1,8 +1,5 @@
 package com.old.silence.mcore.api;
 
-import java.math.BigInteger;
-import java.util.List;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +9,9 @@ import com.old.silence.mcore.client.content.PoetryLearningContentFeignClient;
 import com.old.silence.mcore.dto.PoetryLearningContentMcoreQuery;
 import com.old.silence.mcore.result.ApiResult;
 import com.old.silence.mcore.vo.PoetryLearningContentMcoreView;
+
+import java.math.BigInteger;
+import java.util.List;
 
 /**
  * @author moryzang

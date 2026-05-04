@@ -59,7 +59,7 @@ public class MiniAppAuthResource {
     }
 
     @PostMapping("/auth/sendVerifyCode")
-    public ApiResult<String> sendVerifyCode(@RequestBody SendVerifyCodeRequest sendVerifyCodeRequest){
+    public ApiResult<String> sendVerifyCode(@RequestBody SendVerifyCodeRequest sendVerifyCodeRequest) {
         return ApiResult.success(miniAppAuthService.sendVerifyCode(sendVerifyCodeRequest));
     }
 }

@@ -1,8 +1,8 @@
 package com.old.silence.mcore.vo;
 
-import java.math.BigInteger;
-
 import com.old.silence.content.domain.enums.GradeLevel;
+
+import java.math.BigInteger;
 
 /**
  * @author moryzang
@@ -18,6 +18,12 @@ public interface PoetryUserMCoreView {
     String getAvatarUrl();
 
     String getPhone();
+
+    String getGender();
+
+    String getBirthday();
+
+    String getAddress();
 
     GradeLevel getGradeLevel();
 

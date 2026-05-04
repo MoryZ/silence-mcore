@@ -1,5 +1,8 @@
 package com.old.silence.mcore.vo;
 
+import com.old.silence.content.domain.enums.StudyMode;
+import com.old.silence.content.domain.enums.StudyStatus;
+
 import java.math.BigInteger;
 import java.time.LocalTime;
 
@@ -16,9 +19,15 @@ public interface PoetryUserStudySettingMcoreView {
 
     BigInteger getSubCategoryId();
 
-    Long getDailyNewItems();
+    Long getTotalCount();
 
-    Long getDailyReviewItems();
+    Long getDailyNewCount();
+
+    Long getDailyReviewCount();
+
+    StudyMode getStudyMode();
+
+    StudyStatus getStatus();
 
     LocalTime getStudyReminderTime();
 

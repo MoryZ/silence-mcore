@@ -11,5 +11,5 @@ import lombok.Setter;
 public class BindPhoneRequest {
 
     private String encryptedData;
-    private  String iv;
+    private String iv;
 }

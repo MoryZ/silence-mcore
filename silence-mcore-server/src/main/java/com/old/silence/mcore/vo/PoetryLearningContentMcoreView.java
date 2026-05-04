@@ -44,7 +44,5 @@ public interface PoetryLearningContentMcoreView {
 
     String getImageUrl();
 
-    Long getViewCount();
-
     Boolean getEnabled();
 }

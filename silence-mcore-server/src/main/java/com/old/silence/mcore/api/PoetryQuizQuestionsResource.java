@@ -6,10 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.old.silence.mcore.client.content.PoetryQuizQuestionsFeignClient;
-import com.old.silence.mcore.dto.PoetryGradeMcoreQuery;
 import com.old.silence.mcore.dto.PoetryQuizQuestionsMcoreQuery;
 import com.old.silence.mcore.result.ApiResult;
-import com.old.silence.mcore.vo.PoetryGradeMcoreView;
 import com.old.silence.mcore.vo.PoetryQuizQuestionsMcoreView;
 
 /**

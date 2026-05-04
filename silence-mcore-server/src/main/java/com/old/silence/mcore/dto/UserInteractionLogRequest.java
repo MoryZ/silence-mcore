@@ -3,11 +3,10 @@ package com.old.silence.mcore.dto;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.math.BigInteger;
-
 import com.old.silence.content.domain.enums.InteractionType;
 import com.old.silence.content.domain.enums.ResourceType;
+
+import java.math.BigInteger;
 
 /**
  * UserInteractionLog命令对象

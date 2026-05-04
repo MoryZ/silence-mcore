@@ -9,8 +9,8 @@ import java.math.BigInteger;
 import java.util.Map;
 
 /**
-* PoetryAnswerRecords命令对象
-*/
+ * PoetryAnswerRecords命令对象
+ */
 @Setter
 @Getter
 public class PoetryAnswerRecordsRequest {

@@ -25,6 +25,7 @@ public class PoetryGradeResource {
 
     @GetMapping("/poetryGrades")
     public ApiResult<Page<PoetryGradeMcoreView>> query(PoetryGradeMcoreQuery query, Pageable pageable) {
+        query.setEnabled(true);
         return ApiResult.success(poetryGradeFeignClient.query(query, pageable, PoetryGradeMcoreView.class));
     }
 

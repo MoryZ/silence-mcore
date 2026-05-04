@@ -28,7 +28,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private final JacksonMapper jacksonMapper;
 
     public JwtFilter(SilenceHallServerTokenAuthority jwtProvider,
-                      UserService userService,
+                     UserService userService,
                      JacksonMapper jacksonMapper) {
         this.jwtProvider = jwtProvider;
         this.userService = userService;

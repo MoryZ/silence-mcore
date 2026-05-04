@@ -1,12 +1,12 @@
 package com.old.silence.mcore.vo;
 
-import java.math.BigInteger;
-
 import com.old.silence.content.domain.enums.QuestionType;
 
+import java.math.BigInteger;
+
 /**
-* PoetryQuizQuestions视图接口
-*/
+ * PoetryQuizQuestions视图接口
+ */
 public interface PoetryQuizQuestionsMcoreView {
     BigInteger getId();
 

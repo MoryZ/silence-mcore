@@ -13,8 +13,6 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.old.silence.json.JacksonMapper;
 import com.old.silence.mcore.constant.SecurityConstants;
-import com.old.silence.mcore.security.SilenceHallTokenAuthority;
-import com.old.silence.mcore.security.SilencePrincipal;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -25,14 +23,11 @@ import java.util.Map;
 public class SilenceHallServerTokenAuthority implements SilenceHallTokenAuthority {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SilenceHallServerTokenAuthority.class);
-
+    private final JacksonMapper jacksonMapper;
     @Value("${silence.hall.jwt.secret:silence-hall}")
     private String jwtSecret;
-
     @Value("${silence.hall.jwt.expiration:30}")
     private Long jwtExpirationSeconds;
-
-    private final JacksonMapper jacksonMapper;
 
     public SilenceHallServerTokenAuthority(JacksonMapper jacksonMapper) {
         this.jacksonMapper = jacksonMapper;

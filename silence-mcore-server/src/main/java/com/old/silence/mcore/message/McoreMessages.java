@@ -8,7 +8,8 @@ import com.old.silence.core.context.ErrorCodedEnumMessageSourceResolvable;
  */
 public enum McoreMessages implements ErrorCodedEnumMessageSourceResolvable {
 
-    COMMON_SERVER_ERROR(HttpStatus.SC_INTERNAL_SERVER_ERROR, 51),;
+    COMMON_SERVER_ERROR(HttpStatus.SC_INTERNAL_SERVER_ERROR, 51),
+    ;
 
     private final int httpStatusCode;
     private final int errorCode;

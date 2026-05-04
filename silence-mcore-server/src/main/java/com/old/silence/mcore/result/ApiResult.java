@@ -3,11 +3,10 @@ package com.old.silence.mcore.result;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import com.old.silence.mcore.message.McoreMessages;
 
 import java.io.Serial;
 import java.io.Serializable;
-
-import com.old.silence.mcore.message.McoreMessages;
 
 /**
  * @author moryzang
@@ -15,16 +14,6 @@ import com.old.silence.mcore.message.McoreMessages;
 @Data
 @Accessors(chain = true)
 public class ApiResult<T> implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -8013538827360371249L;
-
-    private int code;
-    private String message;
-    private T data;
-    private long timestamp;
-    private String path;
-    private String traceId; // 用于链路追踪
-
     // 常用状态码常量
     public static final int SUCCESS = 200;
     public static final int BAD_REQUEST = 400;
@@ -33,6 +22,14 @@ public class ApiResult<T> implements Serializable {
     public static final int NOT_FOUND = 404;
     public static final int INTERNAL_SERVER_ERROR = 500;
     public static final int SERVICE_UNAVAILABLE = 503;
+    @Serial
+    private static final long serialVersionUID = -8013538827360371249L;
+    private int code;
+    private String message;
+    private T data;
+    private long timestamp;
+    private String path;
+    private String traceId; // 用于链路追踪
 
     private ApiResult() {
         this.timestamp = System.currentTimeMillis();
@@ -91,6 +88,11 @@ public class ApiResult<T> implements Serializable {
         return error(SERVICE_UNAVAILABLE, message);
     }
 
+    // ========== Builder 模式 ==========
+    public static <T> ApiResultBuilder<T> builder() {
+        return new ApiResultBuilder<>();
+    }
+
     // ========== 业务方法 ==========
     public boolean isSuccess() {
         return code >= 200 && code < 300;
@@ -113,16 +115,11 @@ public class ApiResult<T> implements Serializable {
         return isSuccess() ? data : defaultValue;
     }
 
-    // ========== Builder 模式 ==========
-    public static <T> ApiResultBuilder<T> builder() {
-        return new ApiResultBuilder<>();
-    }
-
     public static class ApiResultBuilder<T> {
+        private final long timestamp = System.currentTimeMillis();
         private int code = SUCCESS;
         private String message = "success";
         private T data;
-        private final long timestamp = System.currentTimeMillis();
         private String path;
         private String traceId;
 
