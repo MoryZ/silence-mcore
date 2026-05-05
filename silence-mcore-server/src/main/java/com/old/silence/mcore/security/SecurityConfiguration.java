@@ -51,7 +51,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/v1/poetryCategories").permitAll()
                         .requestMatchers("/api/v1/poetryGrades").permitAll()
                         .requestMatchers("/api/v1/poetryLearningContents/**").permitAll()
-                        .requestMatchers("/api/v1/contents").permitAll()
+                        .requestMatchers("/api/v1/contents/**").permitAll()
                         .anyRequest().authenticated()
                 );
         http.exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)));
