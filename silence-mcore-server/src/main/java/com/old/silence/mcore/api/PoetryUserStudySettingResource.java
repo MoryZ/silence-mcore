@@ -31,7 +31,7 @@ public class PoetryUserStudySettingResource {
 
     @GetMapping("/poetryUserStudySettings/{subCategoryId}/{gradeId}")
     public ApiResult<PoetryUserStudySettingMcoreView> findBySubCategoryIdGradeIdAndUserId(@PathVariable BigInteger subCategoryId, @PathVariable BigInteger gradeId) {
-        var userId = SilenceHallContextHolder.getAuthenticatedUserId().orElseThrow(CommonErrors.ACCESS_DENIED::createException);
+        var userId = SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
         return ApiResult.success(poetryUserStudySettingFeignClient.findBySubCategoryIdGradeIdAndUserId(subCategoryId, gradeId, userId, PoetryUserStudySettingMcoreView.class)
                 .orElse(null));
     }

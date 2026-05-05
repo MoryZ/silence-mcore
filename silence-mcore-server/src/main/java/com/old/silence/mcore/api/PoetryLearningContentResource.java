@@ -33,7 +33,8 @@ public class PoetryLearningContentResource {
 
     @GetMapping(value = "/poetryLearningContents/{id}")
     public ApiResult<PoetryLearningContentMcoreView> findById(@PathVariable BigInteger id) {
-        var poetryLearningContentMcoreView = poetryLearningContentFeignClient.findById(id, PoetryLearningContentMcoreView.class).orElse(null);
+        var poetryLearningContentMcoreView = poetryLearningContentFeignClient.findById(id, PoetryLearningContentMcoreView.class)
+                .orElse(null);
         return ApiResult.success(poetryLearningContentMcoreView);
     }
 

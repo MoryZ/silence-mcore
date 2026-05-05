@@ -46,6 +46,12 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/v1/auth/sendVerifyCode").permitAll()
                         //.requestMatchers("/api/v1/auth/bindPhone").permitAll()
                         .requestMatchers("/api/v1/provisions").permitAll()
+                        .requestMatchers("/api/v1/poetryDailyStudyPlan").permitAll()
+                        .requestMatchers("/api/v1/poetryUserStudySettings/**").permitAll()
+                        .requestMatchers("/api/v1/poetryCategories").permitAll()
+                        .requestMatchers("/api/v1/poetryGrades").permitAll()
+                        .requestMatchers("/api/v1/poetryLearningContents/**").permitAll()
+                        .requestMatchers("/api/v1/contents").permitAll()
                         .anyRequest().authenticated()
                 );
         http.exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)));
