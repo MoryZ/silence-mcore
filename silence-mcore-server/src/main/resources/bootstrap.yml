@@ -5,12 +5,6 @@ spring:
   application.name: silence-mcore
   profiles.active: CI-1
   messages.basename: messages/mcore_messages
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 14.103.187.231:8848
-        username: nacos
-        password: nacos
 
 logging:
   level:
