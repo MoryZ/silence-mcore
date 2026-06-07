@@ -13,7 +13,7 @@ import java.math.BigInteger;
  */
 @Setter
 @Getter
-public class UserInteractionLogRequest {
+public class ContentUserInteractionLogRequest {
     private BigInteger userId;
     @NotNull
     private BigInteger resourceId;

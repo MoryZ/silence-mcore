@@ -10,7 +10,7 @@ import java.math.BigInteger;
  */
 @Setter
 @Getter
-public class UserInteractionLogMcoreQuery {
+public class ContentUserInteractionLogMcoreQuery {
     private BigInteger userId;
     private BigInteger resourceId;
 

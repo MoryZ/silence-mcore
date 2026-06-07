@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.old.silence.core.context.CommonErrors;
 import com.old.silence.mcore.client.content.UserInteractionLogFeignClient;
-import com.old.silence.mcore.dto.UserInteractionLogMcoreQuery;
-import com.old.silence.mcore.dto.UserInteractionLogRequest;
+import com.old.silence.mcore.dto.ContentUserInteractionLogMcoreQuery;
+import com.old.silence.mcore.dto.ContentUserInteractionLogRequest;
 import com.old.silence.mcore.result.ApiResult;
 import com.old.silence.mcore.security.SilenceHallContextHolder;
 import com.old.silence.mcore.vo.PoetryUserFavoriteMcoreView;
@@ -33,7 +33,7 @@ public class UserInteractionLogResource {
     }
 
     @GetMapping("/userInteractionLog")
-    public ApiResult<Page<PoetryUserFavoriteMcoreView>> query(UserInteractionLogMcoreQuery query, Pageable pageable) {
+    public ApiResult<Page<PoetryUserFavoriteMcoreView>> query(ContentUserInteractionLogMcoreQuery query, Pageable pageable) {
         var userId = SilenceHallContextHolder.getAuthenticatedUserId().orElseThrow(CommonErrors.ACCESS_DENIED::createException);
         query.setUserId(userId);
         return ApiResult.success(userInteractionLogFeignClient.query(query, pageable, PoetryUserFavoriteMcoreView.class));
@@ -41,11 +41,11 @@ public class UserInteractionLogResource {
 
 
     @PostMapping(value = "/userInteractionLog")
-    public ApiResult<String> create(@RequestBody UserInteractionLogRequest userInteractionLogRequest) {
+    public ApiResult<String> create(@RequestBody ContentUserInteractionLogRequest contentUserInteractionLogRequest) {
         var userId = SilenceHallContextHolder.getAuthenticatedUserId()
                 .orElseThrow(CommonErrors.ACCESS_DENIED::createException);
-        userInteractionLogRequest.setUserId(userId);
-        return ApiResult.success(String.valueOf(userInteractionLogFeignClient.create(userInteractionLogRequest)));
+        contentUserInteractionLogRequest.setUserId(userId);
+        return ApiResult.success(String.valueOf(userInteractionLogFeignClient.create(contentUserInteractionLogRequest)));
     }
 
 
