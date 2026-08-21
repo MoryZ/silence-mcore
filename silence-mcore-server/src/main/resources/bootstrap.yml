@@ -17,7 +17,7 @@ logging:
 
 silence:
   system.identifier: MCORE
-  csp:
+  cspp:
     component-code: SILENCE-MCORE-SERVER@SILENCE-MCORE
     namespaces: application.yml
     config-server: http://14.103.187.231:8096
