@@ -10,7 +10,7 @@ import lombok.Data;
  * @author moryzang
  */
 @Data
-public class PoetryAchievementProgressMcoreView {
+public class PoetryAchievementProgressMcoreVo {
 
     /** 当前进度 */
     private Integer current;

@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class LoginResponse {
+public class LoginVo {
     private String token;
     private UserResponse userInfo;
     private String openid;

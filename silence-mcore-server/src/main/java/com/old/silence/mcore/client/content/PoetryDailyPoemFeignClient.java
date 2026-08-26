@@ -1,6 +1,6 @@
 package com.old.silence.mcore.client.content;
 
-import com.old.silence.mcore.vo.PoetryDailyPoemMcoreView;
+import com.old.silence.mcore.vo.PoetryDailyPoemMcoreVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,5 +29,5 @@ public interface PoetryDailyPoemFeignClient {
      * @return 每日一诗视图
      */
     @GetMapping("/poetryDailyPoem")
-    PoetryDailyPoemMcoreView getDailyPoem(@RequestParam BigInteger userId);
+    PoetryDailyPoemMcoreVo getDailyPoem(@RequestParam BigInteger userId);
 }

@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewsCountMcoreView {
+public class NewsCountMcoreVo {
 
     /** 指定时间后新增的资讯数 */
     private Long newCount;

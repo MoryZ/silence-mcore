@@ -30,7 +30,7 @@ public class PoetryStatsSummaryMcoreView {
     private PoetryStatsWeeklyMcoreView weekly;
 
     /** 各分类进度 */
-    private List<PoetryCategoryProgressMcoreView> categoryProgress;
+    private List<PoetryCategoryProgressMcoreVo> categoryProgress;
 
     /** 最近学习记录列表 */
     private List<PoetryRecentStudyMcoreView> recentStudy;

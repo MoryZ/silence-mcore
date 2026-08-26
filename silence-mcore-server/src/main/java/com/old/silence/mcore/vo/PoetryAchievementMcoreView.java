@@ -33,5 +33,5 @@ public class PoetryAchievementMcoreView {
     private String unlockedAt;
 
     /** 解锁进度，仅 unlocked=false 时返回 */
-    private PoetryAchievementProgressMcoreView progress;
+    private PoetryAchievementProgressMcoreVo progress;
 }

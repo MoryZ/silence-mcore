@@ -7,12 +7,12 @@ import com.old.silence.mcore.client.content.PoetryStudyStatsFeignClient;
 import com.old.silence.mcore.client.content.PoetryWrongQuestionsFeignClient;
 import com.old.silence.mcore.result.ApiResult;
 import com.old.silence.mcore.security.SilenceHallContextHolder;
-import com.old.silence.mcore.vo.NewsCountMcoreView;
-import com.old.silence.mcore.vo.PoetryDailyPoemMcoreView;
+import com.old.silence.mcore.vo.NewsCountMcoreVo;
+import com.old.silence.mcore.vo.PoetryDailyPoemMcoreVo;
 import com.old.silence.mcore.vo.PoetryDailyStudyPlanMcoreView;
-import com.old.silence.mcore.vo.PoetryHomeSummaryMcoreView;
-import com.old.silence.mcore.vo.PoetryStudyStatsOverviewMcoreView;
-import com.old.silence.mcore.vo.WrongQuestionCountMcoreView;
+import com.old.silence.mcore.vo.PoetryHomeSummaryMcoreVo;
+import com.old.silence.mcore.vo.PoetryStudyStatsOverviewMcoreVo;
+import com.old.silence.mcore.vo.WrongQuestionCountMcoreVo;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,9 +69,9 @@ public class PoetryHomeResource {
      * 内部调用 5 个 Feign 客户端拼装，任一字段缺失前端用对应字段降级（不崩）。
      */
     @GetMapping("/poetryHome/summary")
-    public ApiResult<PoetryHomeSummaryMcoreView> summary() {
+    public ApiResult<PoetryHomeSummaryMcoreVo> summary() {
         var userId = SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
-        var summary = new PoetryHomeSummaryMcoreView();
+        var summary = new PoetryHomeSummaryMcoreVo();
 
         // 1. 今日计划（现有接口，取第一条）
         try {
@@ -93,7 +93,7 @@ public class PoetryHomeResource {
         try {
             summary.setStatsOverview(poetryStudyStatsFeignClient.getOverview(userId));
         } catch (Exception e) {
-            summary.setStatsOverview(new PoetryStudyStatsOverviewMcoreView());
+            summary.setStatsOverview(new PoetryStudyStatsOverviewMcoreVo());
         }
 
         // 4. 错题待复习数
@@ -117,7 +117,7 @@ public class PoetryHomeResource {
      * 每日一诗
      */
     @GetMapping("/poetryDailyPoem")
-    public ApiResult<PoetryDailyPoemMcoreView> dailyPoem() {
+    public ApiResult<PoetryDailyPoemMcoreVo> dailyPoem() {
         var userId = SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
         return ApiResult.success(poetryDailyPoemFeignClient.getDailyPoem(userId));
     }
@@ -126,7 +126,7 @@ public class PoetryHomeResource {
      * 学习概览（首页 Tier3 激励）
      */
     @GetMapping("/poetryStudyStats/overview")
-    public ApiResult<PoetryStudyStatsOverviewMcoreView> studyStatsOverview() {
+    public ApiResult<PoetryStudyStatsOverviewMcoreVo> studyStatsOverview() {
         var userId = SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
         return ApiResult.success(poetryStudyStatsFeignClient.getOverview(userId));
     }
@@ -135,10 +135,10 @@ public class PoetryHomeResource {
      * 错题待复习数
      */
     @GetMapping("/poetryWrongQuestions/count")
-    public ApiResult<WrongQuestionCountMcoreView> wrongQuestionCount() {
+    public ApiResult<WrongQuestionCountMcoreVo> wrongQuestionCount() {
         var userId = SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
         var count = poetryWrongQuestionsFeignClient.countPending(userId);
-        return ApiResult.success(new WrongQuestionCountMcoreView(count));
+        return ApiResult.success(new WrongQuestionCountMcoreVo(count));
     }
 
     /**
@@ -147,9 +147,9 @@ public class PoetryHomeResource {
      * @param since 可选，ISO 8601 时间，不传则返回总未读数
      */
     @GetMapping("/poetryNews/count")
-    public ApiResult<NewsCountMcoreView> newsCount(
+    public ApiResult<NewsCountMcoreVo> newsCount(
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime since) {
         var count = poetryNewsFeignClient.countNew(since);
-        return ApiResult.success(new NewsCountMcoreView(count));
+        return ApiResult.success(new NewsCountMcoreVo(count));
     }
 }

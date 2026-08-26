@@ -4,7 +4,7 @@ import com.old.silence.mcore.client.content.PoetryStatsFeignClient;
 import com.old.silence.mcore.result.ApiResult;
 import com.old.silence.mcore.security.SilenceHallContextHolder;
 import com.old.silence.mcore.vo.PoetryAchievementMcoreView;
-import com.old.silence.mcore.vo.PoetryCategoryProgressMcoreView;
+import com.old.silence.mcore.vo.PoetryCategoryProgressMcoreVo;
 import com.old.silence.mcore.vo.PoetryRecentStudyMcoreView;
 import com.old.silence.mcore.vo.PoetryStatsOverviewMcoreView;
 import com.old.silence.mcore.vo.PoetryStatsSummaryMcoreView;
@@ -114,7 +114,7 @@ public class PoetryStatsResource {
      * 各分类进度（已学/总数/百分比）
      */
     @GetMapping("/poetryStats/categoryProgress")
-    public ApiResult<List<PoetryCategoryProgressMcoreView>> categoryProgress() {
+    public ApiResult<List<PoetryCategoryProgressMcoreVo>> categoryProgress() {
         var userId = SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
         return ApiResult.success(poetryStatsFeignClient.getCategoryProgress(userId));
     }

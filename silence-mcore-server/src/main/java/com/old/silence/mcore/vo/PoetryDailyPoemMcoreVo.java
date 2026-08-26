@@ -14,7 +14,7 @@ import java.time.LocalDate;
  * @author moryzang
  */
 @Data
-public class PoetryDailyPoemMcoreView {
+public class PoetryDailyPoemMcoreVo {
 
     /** 诗词ID，点击可跳详情 */
     private BigInteger id;

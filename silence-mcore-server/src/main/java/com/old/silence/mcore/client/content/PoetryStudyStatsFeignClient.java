@@ -1,6 +1,6 @@
 package com.old.silence.mcore.client.content;
 
-import com.old.silence.mcore.vo.PoetryStudyStatsOverviewMcoreView;
+import com.old.silence.mcore.vo.PoetryStudyStatsOverviewMcoreVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,5 +29,5 @@ public interface PoetryStudyStatsFeignClient {
      * @return 学习概览视图（streakDays, totalStudyDays, weeklyProgress, categoryProgress, todayCompleted）
      */
     @GetMapping("/poetryStudyStats/overview")
-    PoetryStudyStatsOverviewMcoreView getOverview(@RequestParam BigInteger userId);
+    PoetryStudyStatsOverviewMcoreVo getOverview(@RequestParam BigInteger userId);
 }

@@ -18,7 +18,7 @@ import com.old.silence.mcore.dto.VerifyCodeLoginRequest;
 import com.old.silence.mcore.security.SilenceHallContextHolder;
 import com.old.silence.mcore.security.SilenceHallServerTokenAuthority;
 import com.old.silence.mcore.security.SilencePrincipal;
-import com.old.silence.mcore.vo.LoginResponse;
+import com.old.silence.mcore.vo.LoginVo;
 import com.old.silence.mcore.vo.PoetryUserMCoreView;
 import com.old.silence.mcore.vo.UserResponse;
 import com.old.silence.mcore.vo.WxMaLoginResult;
@@ -58,7 +58,7 @@ public class MiniAppAuthService {
     /**
      * 小程序登录并返回业务token
      */
-    public LoginResponse login(LoginRequest request) {
+    public LoginVo login(LoginRequest request) {
         try {
             // 1. 根据code获取微信session信息
             WxMaLoginResult wxLoginResult = wxMaLoginService.loginByCode(request.getCode());
@@ -79,7 +79,7 @@ public class MiniAppAuthService {
         return "123456";
     }
 
-    public LoginResponse bindPhoneByVerifyCode(VerifyCodeLoginRequest verifyCodeLoginRequest) {
+    public LoginVo bindPhoneByVerifyCode(VerifyCodeLoginRequest verifyCodeLoginRequest) {
         // 校验短信验证码 TODO
         // 1. 根据code获取微信session信息
         WxMaLoginResult wxLoginResult;
@@ -123,10 +123,10 @@ public class MiniAppAuthService {
     /**
      * 处理业务登录逻辑
      */
-    private LoginResponse processBusinessLogin(WxMaLoginResult wxLoginResult) {
+    private LoginVo processBusinessLogin(WxMaLoginResult wxLoginResult) {
         var loginResult = performLogin(wxLoginResult);
 
-        var loginResponse = new LoginResponse();
+        var loginResponse = new LoginVo();
         loginResponse.setToken(loginResult.token());
         loginResponse.setUserInfo(buildUserResponse(loginResult.user()));
         loginResponse.setOpenid(wxLoginResult.getOpenid());

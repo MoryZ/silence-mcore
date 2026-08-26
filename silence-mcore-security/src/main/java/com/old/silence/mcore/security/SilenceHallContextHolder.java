@@ -11,8 +11,8 @@ public class SilenceHallContextHolder {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             var principal = authentication.getPrincipal();
-            if (principal instanceof SilencePrincipal) {
-                var userId = ((SilencePrincipal) principal).getUserId();
+            if (principal instanceof SilencePrincipal silencePrincipal) {
+                var userId = silencePrincipal.getUserId();
                 return Optional.of(userId);
             }
         }
@@ -23,10 +23,10 @@ public class SilenceHallContextHolder {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             var principal = authentication.getPrincipal();
-            if (principal instanceof SilencePrincipal) {
-                var userId = ((SilencePrincipal) principal).getUserId();
-                var unionId = ((SilencePrincipal) principal).getUnionId();
-                var nickname = ((SilencePrincipal) principal).getNickName();
+            if (principal instanceof SilencePrincipal silencePrincipal) {
+                var userId = silencePrincipal.getUserId();
+                var unionId = silencePrincipal.getUnionId();
+                var nickname = silencePrincipal.getNickName();
                 return Optional.of(new SilenceHallUser(userId, unionId, nickname));
             }
         }

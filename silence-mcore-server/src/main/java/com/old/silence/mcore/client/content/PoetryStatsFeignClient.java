@@ -1,7 +1,7 @@
 package com.old.silence.mcore.client.content;
 
 import com.old.silence.mcore.vo.PoetryAchievementMcoreView;
-import com.old.silence.mcore.vo.PoetryCategoryProgressMcoreView;
+import com.old.silence.mcore.vo.PoetryCategoryProgressMcoreVo;
 import com.old.silence.mcore.vo.PoetryRecentStudyMcoreView;
 import com.old.silence.mcore.vo.PoetryStatsOverviewMcoreView;
 import com.old.silence.mcore.vo.PoetryStatsWeeklyMcoreView;
@@ -59,7 +59,7 @@ public interface PoetryStatsFeignClient {
      * @return 分类进度列表
      */
     @GetMapping("/poetryStats/categoryProgress")
-    List<PoetryCategoryProgressMcoreView> getCategoryProgress(@RequestParam BigInteger userId);
+    List<PoetryCategoryProgressMcoreVo> getCategoryProgress(@RequestParam BigInteger userId);
 
     /**
      * 最近学习记录列表

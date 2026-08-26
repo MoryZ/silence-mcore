@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class WrongQuestionCountMcoreView {
+public class WrongQuestionCountMcoreVo {
 
     /** 当前用户待复习的错题数 */
     private Long pendingCount;

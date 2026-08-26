@@ -15,7 +15,7 @@ import lombok.Data;
  * @author moryzang
  */
 @Data
-public class PoetryCategoryProgressMcoreView {
+public class PoetryCategoryProgressMcoreVo {
 
     /** 分类名（如"唐诗"） */
     private String name;

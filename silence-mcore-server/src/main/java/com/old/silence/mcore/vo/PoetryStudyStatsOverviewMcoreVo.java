@@ -20,7 +20,7 @@ import java.util.List;
  * @author moryzang
  */
 @Data
-public class PoetryStudyStatsOverviewMcoreView {
+public class PoetryStudyStatsOverviewMcoreVo {
 
     /** 连续打卡天数 */
     private Integer streakDays;
@@ -32,7 +32,7 @@ public class PoetryStudyStatsOverviewMcoreView {
     private PoetryStatsWeeklyMcoreView weeklyProgress;
 
     /** 各分类进度（首页取第一条展示进度条） */
-    private List<PoetryCategoryProgressMcoreView> categoryProgress;
+    private List<PoetryCategoryProgressMcoreVo> categoryProgress;
 
     /** 今日是否已完成（控制 Tier1 横幅文案） */
     private Boolean todayCompleted;

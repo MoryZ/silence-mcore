@@ -14,7 +14,7 @@ import com.old.silence.mcore.dto.SendVerifyCodeRequest;
 import com.old.silence.mcore.dto.VerifyCodeLoginRequest;
 import com.old.silence.mcore.result.ApiResult;
 import com.old.silence.mcore.service.MiniAppAuthService;
-import com.old.silence.mcore.vo.LoginResponse;
+import com.old.silence.mcore.vo.LoginVo;
 
 /**
  * @author moryzang
@@ -36,7 +36,7 @@ public class MiniAppAuthResource {
      * 小程序登录接口
      */
     @PostMapping("/auth/login")
-    public ApiResult<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+    public ApiResult<LoginVo> login(@Valid @RequestBody LoginRequest request) {
         log.info("小程序登录请求授权码: {}", request.getCode());
         return ApiResult.success(miniAppAuthService.login(request));
     }
@@ -54,7 +54,7 @@ public class MiniAppAuthResource {
      * 绑定手机号
      */
     @PostMapping("/auth/verifyCodeLogin")
-    public ApiResult<LoginResponse> verifyCodeLogin(@Valid @RequestBody VerifyCodeLoginRequest verifyCodeLoginRequest) {
+    public ApiResult<LoginVo> verifyCodeLogin(@Valid @RequestBody VerifyCodeLoginRequest verifyCodeLoginRequest) {
         return ApiResult.success(miniAppAuthService.bindPhoneByVerifyCode(verifyCodeLoginRequest));
     }
 

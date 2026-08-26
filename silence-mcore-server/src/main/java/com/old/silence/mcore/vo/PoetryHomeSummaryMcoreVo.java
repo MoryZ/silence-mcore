@@ -2,8 +2,6 @@ package com.old.silence.mcore.vo;
 
 import lombok.Data;
 
-import java.util.List;
-
 /**
  * 首页聚合视图（BFF 聚合接口）
  * <p>
@@ -21,16 +19,16 @@ import java.util.List;
  * @author moryzang
  */
 @Data
-public class PoetryHomeSummaryMcoreView {
+public class PoetryHomeSummaryMcoreVo {
 
     /** 今日计划（接口1第一条，null 表示无计划） */
     private PoetryDailyStudyPlanMcoreView activePlan;
 
     /** 每日一诗（null 表示无） */
-    private PoetryDailyPoemMcoreView dailyPoem;
+    private PoetryDailyPoemMcoreVo dailyPoem;
 
     /** 学习概览 */
-    private PoetryStudyStatsOverviewMcoreView statsOverview;
+    private PoetryStudyStatsOverviewMcoreVo statsOverview;
 
     /** 错题待复习数 */
     private Long wrongQuestionCount;
