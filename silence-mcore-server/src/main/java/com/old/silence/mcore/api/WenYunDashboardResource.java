@@ -20,7 +20,7 @@ public class WenYunDashboardResource {
         this.dashboardFeignClient = dashboardFeignClient;
     }
 
-    @GetMapping("/wenyun/dashboard/today")
+    @GetMapping("/dashboard/today")
     public ApiResult<WenYunDashboardTodayView> today() {
         BigInteger userId = SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
         return ApiResult.success(dashboardFeignClient.today(userId));

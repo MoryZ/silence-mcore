@@ -24,12 +24,12 @@ public class WenYunBookResource {
         this.bookFeignClient = bookFeignClient;
     }
 
-    @GetMapping("/wenyun/books")
+    @GetMapping("/books")
     public ApiResult<List<WenYunBookView>> list() {
         return ApiResult.success(bookFeignClient.list());
     }
 
-    @GetMapping("/wenyun/books/{id}/items")
+    @GetMapping("/books/{id}/items")
     public ApiResult<WenYunPageView<WenYunBookItemView>> items(@PathVariable BigInteger id,
                                                                @RequestParam(defaultValue = "1") Integer page,
                                                                @RequestParam(defaultValue = "50") Integer size) {

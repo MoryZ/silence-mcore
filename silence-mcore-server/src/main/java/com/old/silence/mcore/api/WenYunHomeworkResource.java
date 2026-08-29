@@ -33,13 +33,13 @@ public class WenYunHomeworkResource {
         return SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
     }
 
-    @PostMapping("/wenyun/homework")
+    @PostMapping("/homework")
     public ApiResult<WenYunHomeworkView> create(@RequestBody WenYunHomeworkCreateRequest request) {
         request.setSubject(defaultSubject(request.getSubject()));
         return ApiResult.success(homeworkFeignClient.create(request));
     }
 
-    @GetMapping("/wenyun/homework")
+    @GetMapping("/homework")
     public ApiResult<WenYunPageView<WenYunHomeworkView>> query(
             @RequestParam(defaultValue = "chinese") String subject,
             @RequestParam(defaultValue = "all") String status,
@@ -49,17 +49,17 @@ public class WenYunHomeworkResource {
         return ApiResult.success(homeworkFeignClient.query(currentUserId(), subject, status, tab, page, size));
     }
 
-    @GetMapping("/wenyun/homework/stats")
+    @GetMapping("/homework/stats")
     public ApiResult<WenYunHomeworkStatsView> stats() {
         return ApiResult.success(homeworkFeignClient.stats(currentUserId()));
     }
 
-    @PatchMapping("/wenyun/homework/{id}")
+    @PatchMapping("/homework/{id}")
     public ApiResult<WenYunHomeworkView> patch(@PathVariable BigInteger id, @RequestBody WenYunHomeworkCreateRequest request) {
         return ApiResult.success(homeworkFeignClient.patch(id, request));
     }
 
-    @DeleteMapping("/wenyun/homework/{id}")
+    @DeleteMapping("/homework/{id}")
     public ApiResult<Void> delete(@PathVariable BigInteger id) {
         homeworkFeignClient.delete(id);
         return ApiResult.success();

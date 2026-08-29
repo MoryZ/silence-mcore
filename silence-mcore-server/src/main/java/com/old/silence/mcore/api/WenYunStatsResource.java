@@ -21,13 +21,13 @@ public class WenYunStatsResource {
         this.statsFeignClient = statsFeignClient;
     }
 
-    @GetMapping("/wenyun/stats/weekly")
+    @GetMapping("/stats/weekly")
     public ApiResult<WenYunStatsWeeklyView> weekly() {
         BigInteger userId = SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
         return ApiResult.success(statsFeignClient.weekly(userId));
     }
 
-    @GetMapping("/wenyun/stats/achievement")
+    @GetMapping("/stats/achievement")
     public ApiResult<WenYunAchievementView> achievement() {
         BigInteger userId = SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
         return ApiResult.success(statsFeignClient.achievement(userId));

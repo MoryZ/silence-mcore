@@ -128,7 +128,7 @@ public class PoetryStatsResource {
     public ApiResult<List<PoetryRecentStudyMcoreView>> recentStudy(
             @RequestParam(defaultValue = "5") Integer limit) {
         var userId = SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
-        var effectiveLimit = Math.min(Math.max(limit, 1), 20);
+        var effectiveLimit = Math.clamp(limit, 1, 20);
         return ApiResult.success(poetryStatsFeignClient.getRecentStudy(userId, effectiveLimit));
     }
 

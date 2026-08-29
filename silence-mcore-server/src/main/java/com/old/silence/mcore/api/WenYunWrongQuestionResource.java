@@ -34,13 +34,13 @@ public class WenYunWrongQuestionResource {
         return SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
     }
 
-    @PostMapping("/wenyun/wrong-questions")
+    @PostMapping("/wrong-questions")
     public ApiResult<WenYunWrongQuestionView> create(@RequestBody WenYunWrongQuestionCreateRequest request) {
         request.setSubject(defaultSubject(request.getSubject()));
         return ApiResult.success(wrongQuestionFeignClient.create(request));
     }
 
-    @GetMapping("/wenyun/wrong-questions")
+    @GetMapping("/wrong-questions")
     public ApiResult<WenYunPageView<WenYunWrongQuestionView>> query(
             @RequestParam(defaultValue = "chinese") String subject,
             @RequestParam(required = false) Integer stage,
@@ -52,22 +52,22 @@ public class WenYunWrongQuestionResource {
         return ApiResult.success(wrongQuestionFeignClient.query(currentUserId(), subject, stage, graduated, tab, wrongReason, page, size));
     }
 
-    @GetMapping("/wenyun/wrong-questions/stats")
+    @GetMapping("/wrong-questions/stats")
     public ApiResult<WenYunWrongQuestionStatsView> stats() {
         return ApiResult.success(wrongQuestionFeignClient.stats(currentUserId()));
     }
 
-    @PostMapping("/wenyun/wrong-questions/{id}/review")
+    @PostMapping("/wrong-questions/{id}/review")
     public ApiResult<WenYunWrongQuestionView> review(@PathVariable BigInteger id, @RequestBody WenYunReviewRequest request) {
         return ApiResult.success(wrongQuestionFeignClient.review(id, request));
     }
 
-    @PatchMapping("/wenyun/wrong-questions/{id}")
+    @PatchMapping("/wrong-questions/{id}")
     public ApiResult<WenYunWrongQuestionView> patch(@PathVariable BigInteger id, @RequestBody WenYunWrongQuestionCreateRequest request) {
         return ApiResult.success(wrongQuestionFeignClient.patch(id, request));
     }
 
-    @DeleteMapping("/wenyun/wrong-questions/{id}")
+    @DeleteMapping("/wrong-questions/{id}")
     public ApiResult<Void> delete(@PathVariable BigInteger id) {
         wrongQuestionFeignClient.delete(id);
         return ApiResult.success();

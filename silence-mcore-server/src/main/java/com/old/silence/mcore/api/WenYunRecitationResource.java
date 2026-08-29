@@ -34,13 +34,13 @@ public class WenYunRecitationResource {
         return SilenceHallContextHolder.getAuthenticatedUserId().orElse(BigInteger.ZERO);
     }
 
-    @PostMapping("/wenyun/recitation")
+    @PostMapping("/recitation")
     public ApiResult<WenYunRecitationView> create(@RequestBody WenYunRecitationCreateRequest request) {
         request.setSubject(defaultSubject(request.getSubject()));
         return ApiResult.success(recitationFeignClient.create(request));
     }
 
-    @GetMapping("/wenyun/recitation")
+    @GetMapping("/recitation")
     public ApiResult<WenYunPageView<WenYunRecitationView>> query(
             @RequestParam(defaultValue = "chinese") String subject,
             @RequestParam(required = false) String category,
@@ -50,22 +50,22 @@ public class WenYunRecitationResource {
         return ApiResult.success(recitationFeignClient.query(currentUserId(), subject, category, tab, page, size));
     }
 
-    @GetMapping("/wenyun/recitation/stats")
+    @GetMapping("/recitation/stats")
     public ApiResult<WenYunRecitationStatsView> stats() {
         return ApiResult.success(recitationFeignClient.stats(currentUserId()));
     }
 
-    @PostMapping("/wenyun/recitation/{id}/review")
+    @PostMapping("/recitation/{id}/review")
     public ApiResult<WenYunRecitationView> review(@PathVariable BigInteger id, @RequestBody WenYunReviewRequest request) {
         return ApiResult.success(recitationFeignClient.review(id, request));
     }
 
-    @PatchMapping("/wenyun/recitation/{id}")
+    @PatchMapping("/recitation/{id}")
     public ApiResult<WenYunRecitationView> patch(@PathVariable BigInteger id, @RequestBody WenYunRecitationCreateRequest request) {
         return ApiResult.success(recitationFeignClient.patch(id, request));
     }
 
-    @DeleteMapping("/wenyun/recitation/{id}")
+    @DeleteMapping("/recitation/{id}")
     public ApiResult<Void> delete(@PathVariable BigInteger id) {
         recitationFeignClient.delete(id);
         return ApiResult.success();
